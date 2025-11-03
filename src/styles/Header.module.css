@@ -1,0 +1,87 @@
+.header {
+  position: sticky;
+  top: 0;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+.navContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 60px;
+}
+
+.logo img {
+  height: 50px;
+  transition: transform 0.3s ease;
+}
+
+.logo img:hover {
+  transform: scale(1.05);
+}
+
+/* Navigation */
+.nav ul {
+  list-style: none;
+  display: flex;
+  gap: 36px;
+  margin: 0;
+  padding: 0;
+}
+
+.nav li {
+  position: relative;
+}
+
+/* Menu links */
+.nav a {
+  color: #222;
+  text-decoration: none;
+  font-weight: 600;
+  font-family: "Poppins", sans-serif;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+  position: relative;
+  padding: 4px 0;
+}
+
+/* Hover underline animation */
+.nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 0%;
+  height: 2px;
+  background-color: #00b894;
+  transition: width 0.3s ease;
+}
+
+.nav a:hover::after {
+  width: 100%;
+}
+
+.nav a:hover {
+  color: #00b894;
+}
+
+/* Responsive for smaller screens */
+@media (max-width: 768px) {
+  .navContainer {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .nav ul {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .logo img {
+    height: 44px;
+  }
+}

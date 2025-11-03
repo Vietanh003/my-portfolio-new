@@ -1,0 +1,68 @@
+.about-section {
+  background: linear-gradient(135deg, #f9fbfc 0%, #eef7f8 100%);
+  padding: 120px 20px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.about-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  animation: fadeInUp 1.2s ease;
+}
+
+/* Tiêu đề lớn, đậm, hiện đại */
+.about-title {
+  font-family: "Poppins", sans-serif;
+  font-size: 3.2rem;           /* ↑ tăng kích thước */
+  font-weight: 700;
+  color: #0a3d62;
+  margin-bottom: 40px;
+  letter-spacing: 1px;
+}
+
+/* Đoạn giới thiệu chính – to hơn, dễ đọc hơn */
+.about-text {
+  font-family: "Inter", sans-serif;
+  font-size: 1.6rem;           /* ↑ tăng kích thước chữ */
+  line-height: 2.2;            /* ↑ giãn dòng cho thoáng */
+  color: #2c3e50;
+  margin-bottom: 40px;
+  padding: 0 30px;
+}
+
+/* Từ khóa nổi bật */
+.highlight {
+  color: #00b894;
+  font-weight: 700;
+}
+
+/* Link “More about me” */
+.about-link {
+  font-family: "Poppins", sans-serif;
+  color: #00b894;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1.3rem;          /* ↑ to hơn */
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.about-link:hover {
+  color: #007f65;
+  letter-spacing: 1.5px;
+}
+
+/* Hiệu ứng xuất hiện */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -1,0 +1,108 @@
+/* =========================
+   Projects Highlight Styles
+   ========================= */
+.project-highlight {
+  position: relative;
+  padding: 100px 0;
+  background-color: #fff;
+}
+
+.project-highlight .container {
+  width: 90%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* Nội dung chính */
+.highlight-content {
+  position: relative;
+  display: inline-block;
+  max-width: 100%;
+}
+
+/* Ảnh chính */
+.highlight-img {
+  width: 100%;
+  max-width: 1000px;
+  height: auto;
+  border-radius: 16px;
+  object-fit: cover;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  transition: transform 0.6s ease, box-shadow 0.4s ease;
+}
+
+.highlight-img:hover {
+  transform: scale(1.03);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Tiêu đề (Studio Space) */
+.highlight-title {
+  font-size: 1.5rem;
+  color: #222;
+  margin-top: 25px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+
+/* Link "More info" */
+.highlight-link {
+  margin-bottom: 25px;
+  font-size: 1rem;
+  color: #2ecc71;
+}
+
+.highlight-link a {
+  color: #2ecc71;
+  text-decoration: none;
+  font-weight: 500;
+  border-bottom: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.highlight-link a:hover {
+  color: #27ae60;
+  border-color: #27ae60;
+}
+
+/* Nút “See all Project” */
+.highlight-button {
+  margin-top: 30px;
+}
+
+.see-all-btn {
+  background-color: #2ecc71;
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  padding: 12px 35px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(46, 204, 113, 0.4);
+}
+
+.see-all-btn:hover {
+  background-color: #27ae60;
+  box-shadow: 0 6px 18px rgba(39, 174, 96, 0.5);
+  transform: translateY(-2px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .highlight-title {
+    font-size: 1.2rem;
+  }
+
+  .see-all-btn {
+    padding: 10px 25px;
+    font-size: 0.95rem;
+  }
+
+  .highlight-img {
+    border-radius: 10px;
+  }
+}

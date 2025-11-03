@@ -1,0 +1,99 @@
+.projects-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #f9fafc;
+  font-family: "Poppins", sans-serif;
+}
+
+.projects-container {
+  flex: 1;
+  padding: 4rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.page-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #2b2b2b;
+  margin-bottom: 0.5rem;
+}
+
+.page-subtitle {
+  color: #555;
+  font-size: 1.1rem;
+  margin-bottom: 3rem;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+}
+
+.project-card {
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: 0.3s;
+}
+
+.project-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.15);
+}
+
+.project-img {
+  width: 100%;
+  height: 220px;
+  object-fit: contain;
+  background: #f3f3f3;
+  padding: 20px;
+}
+
+.project-info {
+  padding: 1.5rem;
+  text-align: left;
+}
+
+.project-info h3 {
+  font-size: 1.4rem;
+  margin-bottom: 0.6rem;
+  color: #333;
+}
+
+.short-desc {
+  color: #666;
+  font-size: 0.95rem;
+  margin-bottom: 0.8rem;
+  line-height: 1.5;
+}
+
+.tech-stack {
+  color: #444;
+  font-size: 0.9rem;
+  margin-bottom: 1.2rem;
+}
+
+.more-btn {
+  text-decoration: none;
+  color: white;
+  background: #4caf50;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: 0.3s;
+  display: inline-block;
+}
+
+.more-btn:hover {
+  background: #43a047;
+  transform: translateY(-2px);
+}
+
+footer {
+  margin-top: auto;
+}

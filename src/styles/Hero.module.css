@@ -1,0 +1,81 @@
+.hero {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #fff;
+  padding: 0 80px;
+  background: url("../assets/images/hero-bg.png") center/cover no-repeat;
+  overflow: hidden;
+}
+
+/* Lớp phủ tối nhẹ để làm nổi chữ */
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 1;
+}
+
+.left,
+.right {
+  position: relative;
+  z-index: 2;
+}
+
+.title {
+  font-size: 64px;
+  font-weight: 700;
+  color: #00ffcc;
+  margin-bottom: 20px;
+}
+
+.subtitle {
+  font-size: 24px;
+  color: #f5f5f5;
+  margin-bottom: 20px;
+  height: 40px;
+}
+
+.divider {
+  width: 80px;
+  height: 4px;
+  background-color: #00ffcc;
+  margin-top: 10px;
+  border-radius: 2px;
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.icon {
+  color: #00ffcc;
+  animation: pulse 1.5s infinite;
+}
+
+.featured {
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.featured:hover {
+  color: #00ffcc;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.6;
+  }
+}
