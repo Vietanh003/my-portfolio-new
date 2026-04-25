@@ -1,116 +1,288 @@
+/* ==========================================================
+   About page — dark cosmic, purple accent
+   ========================================================== */
+
 .about-page {
-  padding: 100px 20px;
-  background: #f8fbfd;
-  font-family: "Poppins", sans-serif;
+  position: relative;
+  padding: 130px 24px 100px;
+  background: linear-gradient(180deg, #0a0d1f 0%, #0b0e22 100%);
+  font-family: "Inter", "Poppins", sans-serif;
+  color: rgba(255, 255, 255, 0.9);
+  overflow: hidden;
 }
 
-.container {
-  max-width: 1000px;
+.about-page::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(900px 500px at 15% 10%, rgba(169, 96, 255, 0.12), transparent 60%),
+    radial-gradient(700px 400px at 90% 60%, rgba(123, 92, 240, 0.08), transparent 60%);
+  pointer-events: none;
+}
+
+.about-page > .container {
+  position: relative;
+  max-width: 1100px;
   margin: 0 auto;
 }
 
+/* ===== HERO TITLE ===== */
 .section-title {
-  font-size: 2.8rem;
+  font-size: clamp(40px, 6vw, 72px);
   font-weight: 700;
-  color: #0a3d62;
-  text-align: center;
-  margin-bottom: 40px;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  text-align: left;
+  text-transform: none;
+  margin: 0 0 32px;
+
+  background: linear-gradient(135deg, #ffffff 0%, #d4c2ff 50%, #a960ff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.section-title::before {
+  content: "";
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  background: #a960ff;
+  box-shadow: 0 0 14px rgba(169, 96, 255, 0.7);
+  margin-right: 18px;
+  vertical-align: middle;
+  -webkit-text-fill-color: initial;
 }
 
 .intro-text {
-  font-size: 1.4rem;
-  color: #2c3e50;
-  line-height: 2.1;
-  margin-bottom: 60px;
-  text-align: center;
+  font-size: 19px;
+  color: rgba(255, 255, 255, 0.72);
+  line-height: 1.7;
+  margin: 0 0 80px;
+  text-align: left;
+  max-width: 64ch;
 }
 
 .highlight {
-  color: #00b894;
-  font-weight: 700;
-}
-
-.sub-title {
-  font-size: 2rem;
+  background: linear-gradient(135deg, #d4c2ff 0%, #a960ff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
   font-weight: 600;
-  color: #007f65;
-  margin-bottom: 20px;
-  border-left: 4px solid #00b894;
-  padding-left: 12px;
-  margin-top: 60px;
 }
 
-.education-item, .experience-item {
-  background: #fff;
-  border-radius: 12px;
-  padding: 24px 30px;
-  margin-bottom: 30px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+.intro-text strong {
+  color: rgba(255, 255, 255, 0.96);
+  font-weight: 600;
 }
 
-.education-date, .experience-date {
-  color: #777;
-  font-size: 0.95rem;
+/* ===== SECTION SUB-TITLES ===== */
+.sub-title {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: clamp(24px, 3vw, 32px);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: rgba(255, 255, 255, 0.96);
+  margin: 80px 0 28px;
+  padding-left: 0;
+  border-left: none;
+}
+
+.sub-title::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: #a960ff;
+  box-shadow: 0 0 12px rgba(169, 96, 255, 0.6);
+  flex-shrink: 0;
+}
+
+/* ===== CARDS (education / experience) ===== */
+.education-item,
+.experience-item {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 22px;
+  padding: 28px 32px;
+  margin-bottom: 16px;
+  box-shadow: none;
+  transition: border-color 280ms cubic-bezier(0.22, 1, 0.36, 1),
+              background 280ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.education-item:hover,
+.experience-item:hover {
+  border-color: rgba(169, 96, 255, 0.28);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.education-item h4,
+.experience-item h4 {
+  font-size: 18px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.96);
+  margin: 0 0 6px;
+  letter-spacing: -0.01em;
+}
+
+.education-date,
+.experience-date {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: 0;
+  margin: 0 0 12px;
+}
+
+.education-item p,
+.experience-item p {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 15px;
+  line-height: 1.6;
+  margin: 0 0 8px;
+}
+
+.experience-item .position {
+  display: inline-block;
+  margin: 4px 0 14px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.92);
+  background: rgba(169, 96, 255, 0.12);
+  border: 1px solid rgba(169, 96, 255, 0.22);
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 13px;
+}
+
+.responsibilities {
+  padding-left: 18px;
+  margin: 12px 0 0;
+}
+
+.responsibilities li {
   margin-bottom: 8px;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 15px;
 }
 
+.responsibilities li::marker {
+  color: rgba(169, 96, 255, 0.7);
+}
+
+/* ===== SKILLS GRID ===== */
 .skills-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 24px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
 }
 
 .skill-category {
-  background: #fff;
-  border-radius: 12px;
-  padding: 20px 24px;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.07);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 22px;
+  padding: 26px;
+  box-shadow: none;
+  transition: border-color 280ms cubic-bezier(0.22, 1, 0.36, 1),
+              background 280ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.skill-category:hover {
+  border-color: rgba(169, 96, 255, 0.28);
+  background: rgba(255, 255, 255, 0.05);
 }
 
 .skill-category h4 {
-  font-size: 1.3rem;
-  color: #00b894;
-  margin-bottom: 12px;
+  font-size: 12px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.55);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  margin: 0 0 18px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .skill-category ul {
   list-style: none;
   padding: 0;
   margin: 0;
+  display: grid;
+  gap: 10px;
 }
 
 .skill-category li {
-  margin-bottom: 8px;
-  color: #2c3e50;
-  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 14px;
+  line-height: 1.5;
 }
 
+/* ===== LEVEL PILLS ===== */
 .level {
-  font-weight: 600;
-  border-radius: 6px;
-  padding: 3px 8px;
-  font-size: 0.85rem;
-  color: #fff;
+  flex-shrink: 0;
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-weight: 500;
+  border-radius: 999px;
+  padding: 3px 10px;
+  font-size: 11px;
+  letter-spacing: 0.02em;
+  text-transform: lowercase;
+  color: rgba(255, 255, 255, 0.92);
+  border: 1px solid;
+  background: transparent;
 }
 
-.level.expert { background: #00b894; }
-.level.advanced { background: #007f65; }
-.level.intermediate { background: #5e8b7e; }
-
-.experience-item .position {
-  font-weight: 600;
-  color: #00b894;
-  margin-bottom: 12px;
+.level.expert {
+  border-color: rgba(169, 96, 255, 0.4);
+  background: rgba(169, 96, 255, 0.16);
+  color: #d4c2ff;
 }
 
-.responsibilities {
-  padding-left: 20px;
+.level.advanced {
+  border-color: rgba(123, 141, 240, 0.36);
+  background: rgba(123, 141, 240, 0.12);
+  color: #b8c4ff;
 }
 
-.responsibilities li {
-  margin-bottom: 8px;
-  line-height: 1.7;
-  color: #2c3e50;
+.level.intermediate {
+  border-color: rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .about-page { padding: 110px 20px 80px; }
+  .education-item,
+  .experience-item,
+  .skill-category {
+    padding: 22px;
+  }
+  .skill-category li {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .sub-title { margin: 56px 0 22px; }
+  .intro-text { margin-bottom: 56px; font-size: 17px; }
+}
+
+@media (max-width: 480px) {
+  .about-page { padding: 100px 16px 60px; }
+  .education-item,
+  .experience-item,
+  .skill-category {
+    padding: 18px;
+    border-radius: 18px;
+  }
+  .section-title::before { margin-right: 12px; width: 10px; height: 10px; }
 }

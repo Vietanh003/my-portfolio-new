@@ -2,6 +2,8 @@ import React from "react";
 import { useParams, Link } from "react-router-dom";
 import "../styles/ProjectDetail.css";
 import Footer from "../components/Footer";
+import parmaImage from "../assets/images/parma.png";
+import todoImage from "../assets/images/todo.png";
 
 const ProjectDetail = () => {
   const { projectId } = useParams();
@@ -22,7 +24,7 @@ const ProjectDetail = () => {
       tech: "ASP.NET Core 6, Entity Framework Core, SQL Server, Bootstrap, JavaScript",
       github: "https://github.com/yourusername/pharmacy-management-system",
       video: "https://www.youtube.com/watch?v=your-demo-video-id",
-      image: "https://cdn-icons-png.flaticon.com/512/2920/2920340.png",
+      image: parmaImage,
     },
     todolist: {
       title: "To-Do List Application",
@@ -38,7 +40,7 @@ const ProjectDetail = () => {
       tech: "JSP, Servlet, JDBC, MySQL, HTML, CSS, Bootstrap, Chart.js",
       github: "https://github.com/yourusername/todolist-jsp-servlet",
       video: "https://www.youtube.com/watch?v=your-demo-video-id",
-      image: "https://cdn-icons-png.flaticon.com/512/619/619153.png",
+      image: todoImage,
     },
   };
 

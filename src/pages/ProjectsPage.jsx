@@ -3,6 +3,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "../styles/ProjectsPage.css";
 import Footer from "../components/Footer";
+import parmaImage from "../assets/images/parma.png";
+import todoImage from "../assets/images/todo.png";
 
 const ProjectsPage = () => {
   const projects = [
@@ -12,7 +14,7 @@ const ProjectsPage = () => {
       shortDesc:
         "A full-stack ASP.NET Core web app for managing users, orders, and inventory in a pharmacy.",
       tech: "ASP.NET Core 6, EF Core, SQL Server, Bootstrap",
-      image: "https://cdn-icons-png.flaticon.com/512/2920/2920340.png",
+      image: parmaImage,
     },
     {
       id: "todolist",
@@ -20,7 +22,7 @@ const ProjectsPage = () => {
       shortDesc:
         "A JSP/Servlet web app to manage daily tasks with CRUD, filters, and progress charts.",
       tech: "JSP, Servlet, JDBC, MySQL, Bootstrap",
-      image: "https://cdn-icons-png.flaticon.com/512/619/619153.png",
+      image: todoImage,
     },
   ];
 

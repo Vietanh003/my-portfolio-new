@@ -16,6 +16,15 @@ const Header = () => {
     return () => (document.body.style.overflow = "");
   }, [menuOpen]);
 
+  // auto-close drawer khi resize sang desktop
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 821px)");
+    const handler = (e) => { if (e.matches) setMenuOpen(false); };
+    mq.addEventListener("change", handler);
+    if (mq.matches) setMenuOpen(false);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
+
   return (
     <header className={styles.header}>
       <div className={styles.navContainer}>

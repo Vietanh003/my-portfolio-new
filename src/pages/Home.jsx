@@ -3,7 +3,6 @@ import Hero from '../components/Hero';
 import AboutSection from '../components/AboutSection';
 import ProjectsSection from '../components/ProjectsSection';
 import Footer from '../components/Footer';
-import ProjectsHighlight from '../components/ProjectsHighlight';
 import styles from './Home.module.css';
 
 const Home = () => {
@@ -11,12 +10,7 @@ const Home = () => {
     <main className={styles.page}>
       <Hero />
       <AboutSection />
-      <section className={styles.section}>
-        <div className={styles.container}>
-          <ProjectsSection />
-        </div>
-      </section>
-      <ProjectsHighlight />
+      <ProjectsSection />
       <Footer />
     </main>
   );

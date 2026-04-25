@@ -79,6 +79,17 @@ const About = () => {
         {/* WORK EXPERIENCE */}
         <h3 className="sub-title">Work Experience</h3>
         <div className="experience-item">
+          <h4>Linksoft Vietnam JSC</h4>
+          <p className="experience-date">February 2025 - Present</p>
+          <p className="position">Fullstack Developer</p>
+          <ul className="responsibilities">
+            <li>Build hospital management software (HIS) with Angular on the frontend and .NET (C#) on the backend.</li>
+            <li>Develop features end-to-end: UI components, REST APIs, and SQL Server integration.</li>
+            <li>Work with the team on requirements analysis, code review, and deployment.</li>
+          </ul>
+        </div>
+
+        <div className="experience-item">
           <h4>CyberSkill Software Solutions Company</h4>
           <p className="experience-date">August 2024 - February 2025</p>
           <p className="position">Internship Backend Developer</p>
