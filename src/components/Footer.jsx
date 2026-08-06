@@ -19,16 +19,7 @@ const decode = (code) => {
   try { return atob(code); } catch { return ""; }
 };
 
-const openEncoded = (code) => (e) => {
-  e.preventDefault();
-  const url = decode(code);
-  if (!url) return;
-  if (url.startsWith("mailto:") || url.startsWith("tel:")) {
-    window.location.href = url;
-  } else {
-    window.open(url, "_blank", "noopener,noreferrer");
-  }
-};
+// click helper removed — anchors now use decoded hrefs directly
 
 const Footer = () => {
   const { t } = useLanguage();
