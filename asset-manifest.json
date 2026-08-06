@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/my-portfolio-new/static/css/main.08af9f59.css",
+    "main.js": "/my-portfolio-new/static/js/main.1c739e93.js",
+    "static/media/pexels-jakubzerdzicki-34212896.jpg": "/my-portfolio-new/static/media/pexels-jakubzerdzicki-34212896.916aa608e1f6b8b838a6.jpg",
+    "static/media/parma.png": "/my-portfolio-new/static/media/parma.12db42a1da4b762508cf.png",
+    "static/media/emr.svg": "/my-portfolio-new/static/media/emr.881aca23a5ff4d267e798621076b08c2.svg",
+    "index.html": "/my-portfolio-new/index.html",
+    "main.08af9f59.css.map": "/my-portfolio-new/static/css/main.08af9f59.css.map",
+    "main.1c739e93.js.map": "/my-portfolio-new/static/js/main.1c739e93.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.08af9f59.css",
+    "static/js/main.1c739e93.js"
+  ]
+}

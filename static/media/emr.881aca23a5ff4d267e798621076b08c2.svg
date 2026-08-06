@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500" role="img" aria-label="EMR / HIS platform cover">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b0e22"/>
+      <stop offset="1" stop-color="#141a3a"/>
+    </linearGradient>
+    <linearGradient id="acc" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#d4c2ff"/>
+      <stop offset="1" stop-color="#a960ff"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.4" r="0.7">
+      <stop offset="0" stop-color="#a960ff" stop-opacity="0.28"/>
+      <stop offset="1" stop-color="#a960ff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="800" height="500" fill="url(#bg)"/>
+  <rect width="800" height="500" fill="url(#glow)"/>
+
+  <!-- subtle grid -->
+  <g stroke="#ffffff" stroke-opacity="0.05" stroke-width="1">
+    <path d="M0 125 H800 M0 250 H800 M0 375 H800"/>
+    <path d="M160 0 V500 M320 0 V500 M480 0 V500 M640 0 V500"/>
+  </g>
+
+  <!-- ECG line -->
+  <path d="M60 260 H210 l24 -70 22 150 26 -190 24 210 20 -110 H560 l26 -60 20 120 24 -60 H740"
+        fill="none" stroke="url(#acc)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" opacity="0.95"/>
+
+  <!-- medical cross badge -->
+  <g transform="translate(360,150)">
+    <rect x="0" y="0" width="80" height="80" rx="20" fill="url(#acc)" opacity="0.16" stroke="url(#acc)" stroke-width="1.5"/>
+    <rect x="33" y="16" width="14" height="48" rx="5" fill="url(#acc)"/>
+    <rect x="16" y="33" width="48" height="14" rx="5" fill="url(#acc)"/>
+  </g>
+
+  <!-- labels -->
+  <text x="400" y="330" text-anchor="middle" font-family="Inter, Poppins, sans-serif" font-size="46" font-weight="700" fill="#ffffff" letter-spacing="1">EMR / HIS</text>
+  <text x="400" y="368" text-anchor="middle" font-family="Inter, Poppins, sans-serif" font-size="19" fill="#b8b3d6">Electronic Medical Records Platform</text>
+
+  <!-- tech pills -->
+  <g font-family="'JetBrains Mono', ui-monospace, monospace" font-size="14" fill="#d4c2ff">
+    <g transform="translate(196,405)">
+      <rect width="112" height="34" rx="17" fill="#a960ff" fill-opacity="0.14" stroke="#a960ff" stroke-opacity="0.4"/>
+      <text x="56" y="22" text-anchor="middle">Angular</text>
+    </g>
+    <g transform="translate(320,405)">
+      <rect width="150" height="34" rx="17" fill="#a960ff" fill-opacity="0.14" stroke="#a960ff" stroke-opacity="0.4"/>
+      <text x="75" y="22" text-anchor="middle">ASP.NET / C#</text>
+    </g>
+    <g transform="translate(482,405)">
+      <rect width="122" height="34" rx="17" fill="#a960ff" fill-opacity="0.14" stroke="#a960ff" stroke-opacity="0.4"/>
+      <text x="61" y="22" text-anchor="middle">HL7 FHIR</text>
+    </g>
+  </g>
+</svg>
