@@ -51,7 +51,6 @@ const FlagEN = ({ size = 20 }) => (
 const LanguageSwitcher = ({ variant = "pill", className }) => {
   const { lang, toggleLang, t } = useLanguage();
 
-  const nextLang = lang === "en" ? "vi" : "en";
   const flag = lang === "en" ? <FlagEN size={16} /> : <FlagVN size={16} />;
 
   const ariaLabel =

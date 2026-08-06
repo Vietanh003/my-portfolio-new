@@ -13,8 +13,7 @@ const SOCIALS = [
 
 const EMAIL_HREF_CODE   = "bWFpbHRvOm5ndXllbnZpZXRhbmgub2ZmaWNlQGdtYWlsLmNvbQ==";
 const EMAIL_TEXT_CODE   = "bmd1eWVudmlldGFuaC5vZmZpY2VAZ21haWwuY29t";
-const TEL_HREF_CODE     = "dGVsOis4NDExMTE5OTk5";
-const TEL_TEXT_CODE     = "Kzg0IDExMTEgOTk5OQ==";
+// telephone values removed (unused) to satisfy ESLint
 
 const decode = (code) => {
   try { return atob(code); } catch { return ""; }
@@ -42,7 +41,11 @@ const Footer = () => {
           <ul>
             {SOCIALS.map(({ label, code }) => (
               <li key={label}>
-                <a href="#" onClick={openEncoded(code)} rel="noopener noreferrer">
+                <a
+                  href={decode(code)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   {label}
                 </a>
               </li>
@@ -58,8 +61,8 @@ const Footer = () => {
         <div className="footer-col">
           <h6><strong>{t("footer.contact")}</strong></h6>
           <p>
-            Email:{" "}
-            <a href="#" onClick={openEncoded(EMAIL_HREF_CODE)}>
+            Email: {" "}
+            <a href={decode(EMAIL_HREF_CODE)}>
               {decode(EMAIL_TEXT_CODE)}
             </a>
           </p>

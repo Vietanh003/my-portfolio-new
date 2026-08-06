@@ -29,14 +29,8 @@ const links = [
   { name: "GitHub",   code: "aHR0cHM6Ly9naXRodWIuY29tL1ZpZXRhbmgwMDM=",                                                                              Icon: Github  },
 ];
 
-const openEncoded = (code) => (e) => {
-  e.preventDefault();
-  try {
-    const url = atob(code);
-    window.open(url, "_blank", "noopener,noreferrer");
-  } catch (_) {
-    /* malformed code — silently ignore */
-  }
+const decode = (code) => {
+  try { return atob(code); } catch { return ""; }
 };
 
 const SocialRail = () => (
@@ -45,12 +39,12 @@ const SocialRail = () => (
       {links.map(({ name, code, Icon }) => (
         <li key={name}>
           <a
-            href="#"
-            onClick={openEncoded(code)}
+            href={decode(code)}
+            target="_blank"
+            rel="noopener noreferrer"
             className={styles.item}
             aria-label={name}
             title={name}
-            rel="noopener noreferrer"
           >
             <Icon size={18} />
           </a>
