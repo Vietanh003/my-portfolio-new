@@ -19,7 +19,7 @@ const ProjectsHighlight = () => {
           </h6>
 
           <div className="highlight-button">
-            <a href="/#projects">
+            <a href="#projects">
               <button className="see-all-btn">
                 <p>See all Project</p>
               </button>

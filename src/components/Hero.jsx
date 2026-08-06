@@ -65,10 +65,10 @@ const Hero = () => {
           <p className={styles.subtitle}>{t("hero.subtitle")}</p>
 
           <div className={styles.actions}>
-            <Link to="/#projects" className={styles.primaryBtn}>
+            <a href="#projects" className={styles.primaryBtn}>
               {t("hero.viewWork")}
               <ArrowRight size={16} />
-            </Link>
+            </a>
             <Link to="/contact" className={styles.secondaryBtn}>
               {t("hero.getInTouch")}
             </Link>
