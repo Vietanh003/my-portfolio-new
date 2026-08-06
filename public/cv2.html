@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Nguyen Viet Anh — Resume</title>
+<meta name="description" content="Nguyen Viet Anh — CV (general). AI tools, soft skills, office skills." />
+<style>
+  /* ==========================================================
+     Classic résumé — white, navy headings, serif.
+     Variant 2: general profile — no projects; skills limited to
+     AI, soft skills and office. Single-column, roomy spacing.
+     ========================================================== */
+  :root {
+    --navy: #1b2a4a;
+    --ink: #232323;
+    --muted: #555;
+    --rule: #cfd4dc;
+    --serif: Georgia, "Times New Roman", Cambria, serif;
+    --sans: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    --page: 210mm;
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+
+  body {
+    margin: 0;
+    background: #e9ecf1;
+    color: var(--ink);
+    font-family: var(--serif);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: var(--navy); }
+
+  /* ===== Toolbar (screen only) ===== */
+  .toolbar {
+    position: sticky; top: 0; z-index: 10;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    padding: 12px; background: rgba(27,42,74,0.96); flex-wrap: wrap;
+  }
+  .btn {
+    display: inline-flex; align-items: center; gap: 7px;
+    font-family: var(--sans); font-size: 13px; font-weight: 600;
+    padding: 8px 15px; border-radius: 6px; cursor: pointer;
+    border: 1px solid rgba(255,255,255,0.35);
+    background: transparent; color: #fff; text-decoration: none;
+    transition: background .15s, border-color .15s;
+  }
+  .btn:hover { background: rgba(255,255,255,0.12); }
+  .btn.primary, .btn.active { background: #fff; color: var(--navy); border-color: #fff; }
+  .btn svg { width: 15px; height: 15px; }
+
+  /* ===== The paper sheet ===== */
+  .sheet {
+    width: var(--page);
+    max-width: 100%;
+    margin: 22px auto;
+    background: #fff;
+    padding: 18mm 18mm;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.18);
+  }
+
+  /* ===== Masthead ===== */
+  .masthead { display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; }
+  .masthead-left { flex: 1; min-width: 0; }
+
+  .name {
+    font-family: var(--serif);
+    font-size: 33px; font-weight: 700; line-height: 1.05;
+    letter-spacing: 0.5px; color: var(--navy);
+    margin: 0 0 4px; text-transform: uppercase;
+  }
+  .role { font-size: 14.5px; font-style: italic; color: var(--ink); margin: 0 0 14px; }
+
+  .contact { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 7px 22px; font-family: var(--sans); font-size: 12.5px; }
+  .contact li { display: flex; align-items: center; gap: 9px; color: var(--ink); min-width: 0; }
+  .contact li svg { width: 14px; height: 14px; flex-shrink: 0; color: var(--navy); }
+  .contact a, .contact span { color: var(--ink); text-decoration: none; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .contact a:hover { text-decoration: underline; }
+
+  /* Portrait */
+  .portrait {
+    width: 112px; height: 140px; flex-shrink: 0;
+    border: 1px solid var(--rule);
+    background: repeating-linear-gradient(45deg, #f4f6f9, #f4f6f9 8px, #eef1f5 8px, #eef1f5 16px);
+    display: flex; align-items: center; justify-content: center; text-align: center;
+    color: #9aa3b2; font-family: var(--sans); font-size: 10px; line-height: 1.4;
+    border-radius: 2px; overflow: hidden;
+  }
+  .portrait img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .portrait span { padding: 6px; }
+
+  /* ===== Section heading + rule ===== */
+  .sec { margin-top: 22px; }
+  .sec-title {
+    font-family: var(--serif);
+    font-size: 14px; font-weight: 700; letter-spacing: 1px;
+    text-transform: uppercase; color: var(--navy); margin: 0 0 3px;
+  }
+  .sec-rule { border: 0; border-top: 1px solid var(--rule); margin: 0 0 11px; }
+
+  .para { font-family: var(--sans); font-size: 12.5px; line-height: 1.62; color: var(--ink); margin: 0; }
+
+  /* ===== Rows (label left / content right) ===== */
+  .row { display: grid; grid-template-columns: 176px 1fr; gap: 20px; padding: 3px 0; }
+  .row + .row { border-top: 1px solid #eef0f4; margin-top: 4px; padding-top: 9px; }
+  .row-label { font-family: var(--sans); font-size: 12px; color: var(--muted); padding-top: 2px; }
+  .row-content { min-width: 0; }
+
+  .entry-title { font-family: var(--serif); font-weight: 700; font-size: 14px; color: var(--navy); margin: 0; line-height: 1.25; }
+  .entry-sub { font-family: var(--sans); font-size: 12.5px; font-style: italic; color: var(--ink); margin: 2px 0 6px; }
+
+  .bullets { font-family: var(--sans); margin: 5px 0 0; padding-left: 17px; }
+  .bullets li { font-size: 12.5px; line-height: 1.6; color: var(--ink); margin-bottom: 5px; padding-left: 2px; }
+  .bullets li::marker { color: var(--navy); }
+
+  /* ===== Skills ===== */
+  .skill-row { display: grid; grid-template-columns: 176px 1fr; gap: 20px; padding: 5px 0; }
+  .skill-row + .skill-row { border-top: 1px solid #eef0f4; }
+  .skill-label { font-family: var(--sans); font-size: 12px; font-weight: 700; letter-spacing: 0.4px; text-transform: uppercase; color: var(--navy); padding-top: 1px; }
+  .skill-body { font-family: var(--sans); font-size: 12.5px; line-height: 1.6; color: var(--ink); }
+
+  .edu-title { font-family: var(--serif); font-weight: 700; font-size: 14px; color: var(--navy); margin: 0 0 2px; }
+  .edu-major { font-family: var(--sans); font-size: 12.5px; color: var(--ink); margin: 2px 0 0; }
+
+  /* ===== Responsive (screen) ===== */
+  @media (max-width: 680px) {
+    .sheet { padding: 24px 18px; margin: 12px auto; }
+    .masthead { flex-direction: column-reverse; align-items: flex-start; }
+    .portrait { width: 96px; height: 120px; }
+    .name { font-size: 26px; }
+    .contact { grid-template-columns: 1fr; }
+    .row, .skill-row { grid-template-columns: 1fr; gap: 3px; }
+    .row-label, .skill-label { padding-top: 0; font-weight: 700; }
+  }
+
+  /* ==========================================================
+     PRINT — A4, single unbreakable page
+     ========================================================== */
+  @media print {
+    @page { size: A4; margin: 12mm 14mm; }
+    .no-print { display: none !important; }
+    body { background: #fff !important; }
+    .sheet { width: auto !important; margin: 0 !important; padding: 0 !important; box-shadow: none !important; break-inside: avoid; page-break-inside: avoid; }
+    .row, .skill-row, .sec, .entry-title { break-inside: avoid; }
+    a { color: #1b2a4a !important; }
+  }
+</style>
+</head>
+<body>
+  <!-- ===== Toolbar (screen only) ===== -->
+  <div class="toolbar no-print">
+    <a class="btn" href="./" title="Portfolio">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+      <span data-i18n="back">Portfolio</span>
+    </a>
+    <button class="btn active" id="lang-en" onclick="setLang('en')">EN</button>
+    <button class="btn" id="lang-vi" onclick="setLang('vi')">VI</button>
+    <button class="btn primary" onclick="window.print()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+      <span data-i18n="print">Print / Save PDF</span>
+    </button>
+  </div>
+
+  <!-- ===== Paper ===== -->
+  <div class="sheet">
+    <!-- Masthead -->
+    <div class="masthead">
+      <div class="masthead-left">
+        <h1 class="name">Nguyen Viet Anh</h1>
+        <p class="role" data-i18n="role">Information Technology</p>
+        <ul class="contact">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <a id="tel">+84 917 386 544</a>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <a id="email">vanhdz246@gmail.com</a>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span data-i18n="location">District 12, Ho Chi Minh City</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            <a id="linkedin" target="_blank" rel="noopener noreferrer">linkedin.com/in/nguyen-viet-anh</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Portrait: photo at public/cv-photo.jpg is picked up automatically -->
+      <div class="portrait" id="portrait">
+        <span data-i18n="photo">Photo<br>cv-photo.jpg</span>
+      </div>
+    </div>
+
+    <!-- OBJECTIVE -->
+    <div class="sec">
+      <h2 class="sec-title" data-i18n="objective">Objective</h2>
+      <hr class="sec-rule" />
+      <p class="para" data-i18n="summary"></p>
+    </div>
+
+    <!-- WORK EXPERIENCE -->
+    <div class="sec">
+      <h2 class="sec-title" data-i18n="experience">Work Experience</h2>
+      <hr class="sec-rule" />
+
+      <div class="row">
+        <div class="row-label" data-i18n="linksoftDate"></div>
+        <div class="row-content">
+          <p class="entry-title" data-i18n="linksoft"></p>
+          <p class="entry-sub" data-i18n="linksoftRole"></p>
+          <ul class="bullets">
+            <li data-i18n="linksoftR1"></li>
+            <li data-i18n="linksoftR2"></li>
+            <li data-i18n="linksoftR3"></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="row-label" data-i18n="cyberskillDate"></div>
+        <div class="row-content">
+          <p class="entry-title" data-i18n="cyberskill"></p>
+          <p class="entry-sub" data-i18n="cyberskillRole"></p>
+          <ul class="bullets">
+            <li data-i18n="cyberskillR1"></li>
+            <li data-i18n="cyberskillR2"></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- SKILLS (AI / soft / office only) -->
+    <div class="sec">
+      <h2 class="sec-title" data-i18n="skills">Skills</h2>
+      <hr class="sec-rule" />
+      <div id="skills"></div>
+    </div>
+
+    <!-- EDUCATION -->
+    <div class="sec">
+      <h2 class="sec-title" data-i18n="education">Education</h2>
+      <hr class="sec-rule" />
+      <div class="row">
+        <div class="row-label" data-i18n="schoolDate"></div>
+        <div class="row-content">
+          <p class="edu-title" data-i18n="school"></p>
+          <p class="edu-major" data-i18n="major"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+  /* ===== Contact (base64) ===== */
+  var C = {
+    emailHref: "bWFpbHRvOnZhbmhkejI0NkBnbWFpbC5jb20=",
+    telHref:   "dGVsOis4NDkxNzM4NjU0NA==",
+    linkedin:  "aHR0cHM6Ly93d3cubGlua2VkaW4uY29tL2luL25ndXllbi12aWV0LWFuaC0="
+  };
+  var dec = function (s) { try { return atob(s); } catch (e) { return ""; } };
+  document.getElementById("email").href    = dec(C.emailHref);
+  document.getElementById("tel").href       = dec(C.telHref);
+  document.getElementById("linkedin").href  = dec(C.linkedin);
+
+  /* Real photo at ./cv-photo.jpg replaces the placeholder */
+  (function () {
+    var img = new Image();
+    img.onload = function () {
+      var box = document.getElementById("portrait");
+      box.innerHTML = ""; box.appendChild(img);
+    };
+    img.src = "./cv-photo.jpg"; img.alt = "Nguyen Viet Anh";
+  })();
+
+  /* ===== Bilingual content (general profile) ===== */
+  var I18N = {
+    en: {
+      back: "Portfolio", print: "Print / Save PDF", photo: "Photo",
+      role: "Information Technology",
+      location: "District 12, Ho Chi Minh City",
+      objective: "Objective",
+      summary: "Detail-oriented IT graduate with 1+ year of professional experience in a software company, working in a team to build a large healthcare platform. Strong at requirements analysis, teamwork and problem-solving, proficient with office software, and skilled at using AI tools to work faster and smarter. Eager to keep learning and contribute to the team's success.",
+      experience: "Work Experience", skills: "Skills", education: "Education",
+
+      school: "HCMC University of Industry and Trade",
+      schoolDate: "Sep 2021 - Oct 2025",
+      major: "B.Sc. in Information Technology",
+
+      linksoft: "Linksoft Vietnam JSC",
+      linksoftDate: "Aug 2025 - Present",
+      linksoftRole: "Software Developer",
+      linksoftR1: "Work in a team to build and maintain a large healthcare management platform, from requirements analysis through delivery.",
+      linksoftR2: "Coordinate with team members on requirement analysis, task planning, review and deployment; document work clearly.",
+      linksoftR3: "Use AI tools (Claude, Copilot) daily to speed up work, research and problem-solving.",
+
+      cyberskill: "CyberSkill Software Solutions",
+      cyberskillDate: "Aug 2024 - Feb 2025",
+      cyberskillRole: "Intern",
+      cyberskillR1: "Assisted in analyzing business requirements and supported project tasks.",
+      cyberskillR2: "Joined training on soft skills, teamwork and new technologies.",
+
+      skills: [
+        { label: "AI Tools", body: "Skilled at using AI assistants (Claude, ChatGPT, GitHub Copilot) for research, drafting, summarizing and speeding up daily work; effective prompting." },
+        { label: "Office", body: "Microsoft Word, Excel, PowerPoint; Google Docs / Sheets / Slides. Email, documentation, data entry and basic reporting." },
+        { label: "Soft Skills", body: "Problem-solving & critical thinking, teamwork & Agile/Scrum, communication & presentation, self-learning & adaptability." },
+        { label: "Languages", body: "Vietnamese (native); English (reading technical documents)." }
+      ]
+    },
+
+    vi: {
+      back: "Portfolio", print: "In / Lưu PDF", photo: "Ảnh",
+      role: "Công nghệ Thông tin",
+      location: "Quận 12, TP. Hồ Chí Minh",
+      objective: "Mục tiêu",
+      summary: "Cử nhân CNTT cẩn thận, có hơn 1 năm kinh nghiệm làm việc tại công ty phần mềm, phối hợp trong nhóm xây dựng một nền tảng lớn trong lĩnh vực y tế. Mạnh về phân tích yêu cầu, làm việc nhóm và giải quyết vấn đề; thành thạo tin học văn phòng và biết tận dụng công cụ AI để làm việc nhanh và hiệu quả hơn. Mong muốn tiếp tục học hỏi và đóng góp vào thành công của tập thể.",
+      experience: "Kinh nghiệm làm việc", skills: "Kỹ năng", education: "Học vấn",
+
+      school: "ĐH Công Thương TP.HCM",
+      schoolDate: "Th9 2021 - Th10 2025",
+      major: "Cử nhân Công nghệ Thông tin",
+
+      linksoft: "Công ty CP Linksoft Việt Nam",
+      linksoftDate: "Th8 2025 - Hiện tại",
+      linksoftRole: "Nhân viên phát triển phần mềm",
+      linksoftR1: "Làm việc nhóm xây dựng và bảo trì một nền tảng quản lý lớn trong lĩnh vực y tế, từ phân tích yêu cầu đến bàn giao.",
+      linksoftR2: "Phối hợp cùng đồng đội trong phân tích yêu cầu, lập kế hoạch, review và triển khai; ghi chép công việc rõ ràng.",
+      linksoftR3: "Sử dụng công cụ AI (Claude, Copilot) hằng ngày để tăng tốc công việc, tra cứu và giải quyết vấn đề.",
+
+      cyberskill: "Giải pháp Phần mềm CyberSkill",
+      cyberskillDate: "Th8 2024 - Th2 2025",
+      cyberskillRole: "Thực tập sinh",
+      cyberskillR1: "Hỗ trợ phân tích yêu cầu nghiệp vụ và hỗ trợ các công việc của dự án.",
+      cyberskillR2: "Tham gia đào tạo về kỹ năng mềm, làm việc nhóm và công nghệ mới.",
+
+      skills: [
+        { label: "Công cụ AI", body: "Thành thạo dùng trợ lý AI (Claude, ChatGPT, GitHub Copilot) để tra cứu, soạn thảo, tóm tắt và tăng tốc công việc hằng ngày; biết cách đặt prompt hiệu quả." },
+        { label: "Tin học văn phòng", body: "Microsoft Word, Excel, PowerPoint; Google Docs / Sheets / Slides. Email, soạn tài liệu, nhập liệu và làm báo cáo cơ bản." },
+        { label: "Kỹ năng mềm", body: "Giải quyết vấn đề & tư duy phản biện, làm việc nhóm & Agile/Scrum, giao tiếp & thuyết trình, tự học & thích nghi." },
+        { label: "Ngoại ngữ", body: "Tiếng Việt (bản ngữ); Tiếng Anh (đọc tài liệu chuyên ngành)." }
+      ]
+    }
+  };
+
+  function esc(s) { return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+
+  function apply(lang) {
+    var d = I18N[lang] || I18N.en;
+    document.documentElement.lang = lang;
+
+    var nodes = document.querySelectorAll("[data-i18n]");
+    for (var i = 0; i < nodes.length; i++) {
+      var key = nodes[i].getAttribute("data-i18n");
+      if (typeof d[key] === "string") nodes[i].textContent = d[key];
+    }
+
+    var wrap = document.getElementById("skills");
+    var html = "";
+    for (var g = 0; g < d.skills.length; g++) {
+      var grp = d.skills[g];
+      html += '<div class="skill-row"><div class="skill-label">' + esc(grp.label) + '</div><div class="skill-body">' + esc(grp.body) + "</div></div>";
+    }
+    wrap.innerHTML = html;
+
+    document.getElementById("lang-en").classList.toggle("active", lang === "en");
+    document.getElementById("lang-vi").classList.toggle("active", lang === "vi");
+    try { localStorage.setItem("cv2-lang", lang); } catch (e) {}
+  }
+
+  window.setLang = apply;
+  var saved = "en";
+  try { saved = localStorage.getItem("cv2-lang") || "en"; } catch (e) {}
+  apply(saved);
+</script>
+</body>
+</html>

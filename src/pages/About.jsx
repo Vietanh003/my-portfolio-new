@@ -1,109 +1,122 @@
 import React from "react";
 import "../styles/About.css";
-import Footer from '../components/Footer';
+import Footer from "../components/Footer";
+import { useLanguage } from "../i18n/LanguageContext";
 
 const About = () => {
+  const { t } = useLanguage();
+
   return (
     <section className="about-page">
       <div className="container">
-        {/* GIỚI THIỆU */}
-        <h2 className="section-title">About Me</h2>
+        {/* HERO INTRO */}
+        <h2 className="section-title">{t("aboutPage.title")}</h2>
         <p className="intro-text">
-          Driven <span className="highlight">Backend Developer</span> with foundational skills in 
-          <strong> Java</strong>, <strong>C#</strong>, and <strong>Node.js</strong>, passionate about building 
-          reliable software solutions. I seek to join a collaborative team where I can learn 
-          advanced backend technologies and <strong>DevOps</strong> practices, contributing to 
-          innovative projects and company success.
+          {t("aboutPage.introBefore")}{" "}
+          <span className="highlight">{t("aboutPage.introRole")}</span>
+          {t("aboutPage.introAfter")}
         </p>
 
         {/* EDUCATION */}
-        <h3 className="sub-title">Education</h3>
+        <h3 className="sub-title">{t("aboutPage.education")}</h3>
         <div className="education-item">
-          <h4>Ho Chi Minh City University of Industry and Trade</h4>
-          <p className="education-date">September 2021 - October 2025</p>
-          <p>Major: Bachelor of Information Technology</p>
+          <h4>{t("aboutPage.school")}</h4>
+          <p className="education-date">{t("aboutPage.schoolDate")}</p>
+          <p>{t("aboutPage.major")}</p>
         </div>
 
         {/* SKILLS */}
-        <h3 className="sub-title">Skills</h3>
+        <h3 className="sub-title">{t("aboutPage.skills")}</h3>
         <div className="skills-grid">
           <div className="skill-category">
-            <h4>Backend</h4>
+            <h4>{t("aboutPage.skillBackend")}</h4>
             <ul>
-              <li>Java (Spring Boot, Servlet/JSP) - <span className="level expert">Expert</span></li>
-              <li>C# (.NET Core) - <span className="level advanced">Advanced</span></li>
-              <li>Node.js, Express.js - <span className="level advanced">Advanced</span></li>
-              <li>RESTful API Design - <span className="level expert">Expert</span></li>
+              <li>C# (ASP.NET Web API / MVC, .NET) <span className="level expert">{t("aboutPage.levelExpert")}</span></li>
+              <li>Java (Spring Boot, Servlet/JSP) <span className="level advanced">{t("aboutPage.levelAdvanced")}</span></li>
+              <li>Node.js, Express.js <span className="level advanced">{t("aboutPage.levelAdvanced")}</span></li>
+              <li>RESTful API, JWT Auth, SignalR <span className="level expert">{t("aboutPage.levelExpert")}</span></li>
             </ul>
           </div>
 
           <div className="skill-category">
-            <h4>Database</h4>
+            <h4>{t("aboutPage.skillDatabase")}</h4>
             <ul>
-              <li>MySQL, SQL Server, Oracle, MongoDB - <span className="level advanced">Advanced</span></li>
-              <li>ERD Modeling, Normalization - <span className="level expert">Expert</span></li>
-              <li>Stored Procedures, Triggers, Functions - <span className="level advanced">Advanced</span></li>
-              <li>Performance Tuning, Indexing - <span className="level intermediate">Intermediate</span></li>
+              <li>SQL Server, Oracle, MySQL <span className="level advanced">{t("aboutPage.levelAdvanced")}</span></li>
+              <li>MongoDB (NoSQL) <span className="level advanced">{t("aboutPage.levelAdvanced")}</span></li>
+              <li>ERD, Stored Procedures, Functions <span className="level advanced">{t("aboutPage.levelAdvanced")}</span></li>
+              <li>Query Optimization, Indexing <span className="level intermediate">{t("aboutPage.levelIntermediate")}</span></li>
             </ul>
           </div>
 
           <div className="skill-category">
-            <h4>Frontend</h4>
+            <h4>{t("aboutPage.skillFrontend")}</h4>
             <ul>
-              <li>HTML5, CSS3, JavaScript - <span className="level advanced">Advanced</span></li>
-              <li>React.js, Next.js - <span className="level intermediate">Intermediate</span></li>
-              <li>Bootstrap, Tailwind CSS - <span className="level advanced">Advanced</span></li>
+              <li>Angular (TypeScript, RxJS) <span className="level advanced">{t("aboutPage.levelAdvanced")}</span></li>
+              <li>HTML5, CSS3, JavaScript <span className="level advanced">{t("aboutPage.levelAdvanced")}</span></li>
+              <li>React.js, Next.js <span className="level intermediate">{t("aboutPage.levelIntermediate")}</span></li>
+              <li>Bootstrap, Tailwind, Chart.js <span className="level advanced">{t("aboutPage.levelAdvanced")}</span></li>
             </ul>
           </div>
 
           <div className="skill-category">
-            <h4>Tools & DevOps</h4>
+            <h4>{t("aboutPage.skillHealthcare")}</h4>
             <ul>
-              <li>Git, GitHub/GitLab - <span className="level expert">Expert</span></li>
-              <li>Postman, Swagger - <span className="level advanced">Advanced</span></li>
-              <li>Docker (basic), VS Code, Visual Studio - <span className="level intermediate">Intermediate</span></li>
+              <li>HL7 FHIR R4 <span className="level advanced">{t("aboutPage.levelAdvanced")}</span></li>
+              <li>MoH (BYT) &amp; Social-Insurance (VSS) standards <span className="level advanced">{t("aboutPage.levelAdvanced")}</span></li>
+              <li>HSM Digital Signature <span className="level intermediate">{t("aboutPage.levelIntermediate")}</span></li>
             </ul>
           </div>
 
           <div className="skill-category">
-            <h4>Soft Skills</h4>
+            <h4>{t("aboutPage.skillTools")}</h4>
             <ul>
-              <li>Problem-solving & Critical Thinking - <span className="level advanced">Advanced</span></li>
-              <li>Teamwork & Agile/Scrum - <span className="level intermediate">Intermediate</span></li>
-              <li>Communication & Presentation - <span className="level advanced">Advanced</span></li>
-              <li>Self-learning & Adaptability - <span className="level expert">Expert</span></li>
+              <li>Git, GitHub/GitLab <span className="level expert">{t("aboutPage.levelExpert")}</span></li>
+              <li>AI-assisted dev (Claude, Copilot) <span className="level advanced">{t("aboutPage.levelAdvanced")}</span></li>
+              <li>Postman, Swagger <span className="level advanced">{t("aboutPage.levelAdvanced")}</span></li>
+              <li>Docker (basic), VS Code, Visual Studio <span className="level intermediate">{t("aboutPage.levelIntermediate")}</span></li>
+            </ul>
+          </div>
+
+          <div className="skill-category">
+            <h4>{t("aboutPage.skillSoft")}</h4>
+            <ul>
+              <li>Problem-solving & Critical Thinking <span className="level advanced">{t("aboutPage.levelAdvanced")}</span></li>
+              <li>Teamwork & Agile/Scrum <span className="level intermediate">{t("aboutPage.levelIntermediate")}</span></li>
+              <li>Communication & Presentation <span className="level advanced">{t("aboutPage.levelAdvanced")}</span></li>
+              <li>Self-learning & Adaptability <span className="level expert">{t("aboutPage.levelExpert")}</span></li>
             </ul>
           </div>
         </div>
 
         {/* WORK EXPERIENCE */}
-        <h3 className="sub-title">Work Experience</h3>
+        <h3 className="sub-title">{t("aboutPage.experience")}</h3>
+
         <div className="experience-item">
-          <h4>Linksoft Vietnam JSC</h4>
-          <p className="experience-date">February 2025 - Present</p>
-          <p className="position">Fullstack Developer</p>
+          <h4>{t("aboutPage.linksoft")}</h4>
+          <p className="experience-date">{t("aboutPage.linksoftDate")}</p>
+          <p className="position">{t("aboutPage.linksoftRole")}</p>
           <ul className="responsibilities">
-            <li>Build hospital management software (HIS) with Angular on the frontend and .NET (C#) on the backend.</li>
-            <li>Develop features end-to-end: UI components, REST APIs, and SQL Server integration.</li>
-            <li>Work with the team on requirements analysis, code review, and deployment.</li>
+            <li>{t("aboutPage.linksoftR1")}</li>
+            <li>{t("aboutPage.linksoftR2")}</li>
+            <li>{t("aboutPage.linksoftR3")}</li>
+            <li>{t("aboutPage.linksoftR4")}</li>
           </ul>
         </div>
 
         <div className="experience-item">
-          <h4>CyberSkill Software Solutions Company</h4>
-          <p className="experience-date">August 2024 - February 2025</p>
-          <p className="position">Internship Backend Developer</p>
+          <h4>{t("aboutPage.cyberskill")}</h4>
+          <p className="experience-date">{t("aboutPage.cyberskillDate")}</p>
+          <p className="position">{t("aboutPage.cyberskillRole")}</p>
           <ul className="responsibilities">
-            <li>Assist in analyzing business requirements for assigned projects.</li>
-            <li>Learn and apply Node.js and Next.js in backend development tasks.</li>
-            <li>Contribute to building and testing project modules using Next.js.</li>
-            <li>Participate in training sessions on soft skills and emerging technologies.</li>
+            <li>{t("aboutPage.cyberskillR1")}</li>
+            <li>{t("aboutPage.cyberskillR2")}</li>
+            <li>{t("aboutPage.cyberskillR3")}</li>
+            <li>{t("aboutPage.cyberskillR4")}</li>
           </ul>
         </div>
       </div>
-          <Footer />
+      <Footer />
     </section>
-    
   );
 };
 

@@ -31,3 +31,10 @@ p, h1, h2, h3, h4, h5, h6, li, span {
   overflow-wrap: break-word;
   word-wrap: break-word;
 }
+
+/* On mobile, leave room at the bottom for the floating bottom dock */
+@media (max-width: 820px) {
+  body {
+    padding-bottom: calc(80px + env(safe-area-inset-bottom, 0px));
+  }
+}

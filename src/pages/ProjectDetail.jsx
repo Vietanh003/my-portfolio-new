@@ -1,56 +1,38 @@
 import React from "react";
 import { useParams, Link } from "react-router-dom";
+import { Play, ExternalLink, Github, Globe } from "lucide-react";
 import "../styles/ProjectDetail.css";
 import Footer from "../components/Footer";
 import parmaImage from "../assets/images/parma.png";
-import todoImage from "../assets/images/todo.png";
+import emrImage from "../assets/images/emr.svg";
+import { useLanguage } from "../i18n/LanguageContext";
+
+const projectsMeta = {
+  emr: {
+    tech: "Angular 13, TypeScript, RxJS, Chart.js, Leaflet, ASP.NET Web API 2 (C#), SQL Server, Oracle, MongoDB, HL7 FHIR R4, SignalR, JWT",
+    live: "https://ntbadt.medinet.org.vn",
+    image: emrImage,
+  },
+  pharmacy: {
+    tech: "Node.js, Express, TypeScript, Next.js 16, React 19, Tailwind CSS, Prisma, SQL Server, JWT, ExcelJS, VNPay & MoMo",
+    github: "https://github.com/Vietanh003/medicare-pharmacy.git",
+    video:
+      "https://1drv.ms/v/c/f6fad0bcd22a17ca/ERywnZAAZgZFpTCKVEnd3PgB5KFbElUgJ34XWGkYwAZamw",
+    image: parmaImage,
+  },
+};
 
 const ProjectDetail = () => {
   const { projectId } = useParams();
+  const { t } = useLanguage();
 
-  const projects = {
-    pharmacy: {
-      title: "Pharmacy Management System",
-      intro: `
-        A full-stack web application for pharmacy operations management.
-        It includes role-based authentication, CRUD operations for users and products,
-        order handling, and encryption for order statuses.
-      `,
-      work: `
-        I designed and implemented the Admin and Customer modules, integrated
-        SQL stored procedures for secure data handling, and built a responsive UI
-        using Bootstrap and JavaScript validations.
-      `,
-      tech: "ASP.NET Core 6, Entity Framework Core, SQL Server, Bootstrap, JavaScript",
-      github: "https://github.com/yourusername/pharmacy-management-system",
-      video: "https://www.youtube.com/watch?v=your-demo-video-id",
-      image: parmaImage,
-    },
-    todolist: {
-      title: "To-Do List Application",
-      intro: `
-        A JSP/Servlet-based To-Do List system for managing personal tasks
-        with filtering, completion tracking, and statistics visualization.
-      `,
-      work: `
-        I developed the CRUD functionalities using JDBC with MySQL stored procedures,
-        implemented a chart for monthly progress, and ensured a responsive interface
-        with Bootstrap and CSS.
-      `,
-      tech: "JSP, Servlet, JDBC, MySQL, HTML, CSS, Bootstrap, Chart.js",
-      github: "https://github.com/yourusername/todolist-jsp-servlet",
-      video: "https://www.youtube.com/watch?v=your-demo-video-id",
-      image: todoImage,
-    },
-  };
+  const meta = projectsMeta[projectId];
 
-  const project = projects[projectId];
-
-  if (!project) {
+  if (!meta) {
     return (
       <div className="project-not-found">
-        <h2>Project not found 😢</h2>
-        <Link to="/projects">Back to Projects</Link>
+        <h2>{t("projectDetail.notFound")}</h2>
+        <Link to="/projects">← {t("projectDetail.back")}</Link>
       </div>
     );
   }
@@ -60,67 +42,95 @@ const ProjectDetail = () => {
       <div className="project-detail-container">
         {/* Left Column */}
         <div className="detail-left">
-          <img src={project.image} alt={project.title} className="detail-image" />
-          {project.video && (
-            <div className="video-container">
-              <iframe
-                src={project.video}
-                title="Project Demo"
-                frameBorder="0"
-                allowFullScreen
-              ></iframe>
-            </div>
+          <img
+            src={meta.image}
+            alt={t(`projectsData.${projectId}.title`)}
+            className="detail-image"
+          />
+
+          {meta.video && (
+            <a
+              href={meta.video}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="video-card"
+              aria-label={t("projectDetail.demo")}
+            >
+              <span className="video-card-icon" aria-hidden="true">
+                <Play size={20} fill="currentColor" />
+              </span>
+              <span className="video-card-text">
+                <span className="video-card-title">{t("projectDetail.demo")}</span>
+                <span className="video-card-host">OneDrive</span>
+              </span>
+              <ExternalLink size={16} className="video-card-arrow" aria-hidden="true" />
+            </a>
           )}
         </div>
 
         {/* Right Column */}
         <div className="detail-right">
-          <h2 className="detail-title">{project.title}</h2>
+          <h2 className="detail-title">{t(`projectsData.${projectId}.title`)}</h2>
 
           <div className="detail-section">
-            <h4>Project Introduction</h4>
-            <p>{project.intro}</p>
+            <h4>{t("projectDetail.intro")}</h4>
+            <p>{t(`projectsData.${projectId}.intro`)}</p>
           </div>
 
           <div className="detail-section">
-            <h4>My Work</h4>
-            <p>{project.work}</p>
+            <h4>{t("projectDetail.work")}</h4>
+            <p>{t(`projectsData.${projectId}.work`)}</p>
           </div>
 
           <div className="detail-section">
-            <h4>Technologies Used</h4>
-            <p>{project.tech}</p>
+            <h4>{t("projectDetail.tech")}</h4>
+            <p>{meta.tech}</p>
           </div>
 
           <div className="detail-links">
-            <a
-              href={project.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="detail-link github"
-            >
-              🔗 View Source on GitHub
-            </a>
-
-            {project.video && (
+            {meta.live && (
               <a
-                href={project.video}
+                href={meta.live}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="detail-link demo"
               >
-                ▶ Watch Demo Video
+                <Globe size={16} aria-hidden="true" />
+                {t("projectDetail.live")}
+              </a>
+            )}
+
+            {meta.github && (
+              <a
+                href={meta.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="detail-link github"
+              >
+                <Github size={16} aria-hidden="true" />
+                {t("projectDetail.github")}
+              </a>
+            )}
+
+            {meta.video && (
+              <a
+                href={meta.video}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="detail-link demo"
+              >
+                <Play size={16} fill="currentColor" aria-hidden="true" />
+                {t("projectDetail.demo")}
               </a>
             )}
           </div>
 
           <Link to="/projects" className="detail-back">
-            ← Back to Projects
+            ← {t("projectDetail.back")}
           </Link>
         </div>
       </div>
 
-      {/* Footer always at bottom */}
       <Footer />
     </div>
   );

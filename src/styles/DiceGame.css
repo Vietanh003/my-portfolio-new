@@ -1,0 +1,430 @@
+/* ==========================================================
+   Dice game tool
+   ========================================================== */
+
+/* ===== TABS ===== */
+.dice-tabs {
+  display: inline-flex;
+  gap: 4px;
+  padding: 4px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  margin-bottom: 22px;
+}
+
+.dice-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 18px;
+  border-radius: 999px;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.62);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: color 200ms ease, background 220ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.dice-tab:hover { color: rgba(255, 255, 255, 0.92); }
+
+.dice-tab--active {
+  color: rgba(255, 255, 255, 0.96);
+  background: rgba(0, 0, 0, 0.42);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+}
+
+/* ===== SETTINGS (dice sides) ===== */
+.dice-settings {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 28px;
+}
+
+.dice-settings__label {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+  margin-right: 4px;
+}
+
+.dice-side {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  transition: all 180ms ease;
+}
+
+.dice-side:hover {
+  border-color: rgba(169, 96, 255, 0.32);
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.dice-side--active {
+  background: rgba(169, 96, 255, 0.16);
+  border-color: rgba(169, 96, 255, 0.45);
+  color: #d4c2ff;
+}
+
+/* ===== SECTION TITLE ===== */
+.dice-section-title {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+  margin: 0 0 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.dice-section-title::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: #a960ff;
+  box-shadow: 0 0 10px rgba(169, 96, 255, 0.6);
+}
+
+.dice-players-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+/* ===== ADD PLAYER FORM ===== */
+.dice-add {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.dice-add input {
+  flex: 1;
+  min-width: 0;
+  padding: 12px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  background: rgba(0, 0, 0, 0.25);
+  color: rgba(255, 255, 255, 0.95);
+  font: inherit;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 180ms ease, background 180ms ease;
+}
+
+.dice-add input:focus {
+  border-color: rgba(169, 96, 255, 0.45);
+  background: rgba(0, 0, 0, 0.35);
+  box-shadow: 0 0 0 4px rgba(169, 96, 255, 0.12);
+}
+
+.dice-add input::placeholder { color: rgba(255, 255, 255, 0.3); }
+
+.dice-add__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 12px 18px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.94);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 200ms ease, border-color 200ms ease;
+}
+
+.dice-add__btn:hover {
+  background: rgba(169, 96, 255, 0.16);
+  border-color: rgba(169, 96, 255, 0.32);
+}
+
+/* ===== PLAYER LIST ===== */
+.dice-players {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.dice-player {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  background: rgba(255, 255, 255, 0.03);
+  transition: border-color 280ms cubic-bezier(0.22, 1, 0.36, 1),
+              background 280ms cubic-bezier(0.22, 1, 0.36, 1),
+              transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.dice-player__name {
+  flex: 1;
+  min-width: 0;
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.92);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dice-player__remove {
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  background: transparent;
+  color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: all 180ms ease;
+}
+
+.dice-player__remove:hover {
+  background: rgba(255, 79, 129, 0.16);
+  border-color: rgba(255, 79, 129, 0.32);
+  color: #ffbbcc;
+}
+
+.dice-player__remove:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* ===== DICE FACE (real dice with pips for d6) ===== */
+.dice-face {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  flex-shrink: 0;
+  background: linear-gradient(135deg, #fafafa 0%, #d8d8e0 100%);
+  border: 1px solid rgba(0, 0, 0, 0.18);
+  box-shadow:
+    0 3px 0 rgba(0, 0, 0, 0.18),
+    0 1px 4px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.06);
+  transform-style: preserve-3d;
+  perspective: 200px;
+  transition: transform 280ms cubic-bezier(0.22, 1, 0.36, 1),
+              background 280ms ease;
+}
+
+/* Pip face (d6) */
+.dice-pips {
+  width: 78%;
+  height: 78%;
+}
+
+.dice-pips circle {
+  fill: #1a1a24;
+}
+
+/* Number face (d10, d20) */
+.dice-face--num .dice-num {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 18px;
+  font-weight: 700;
+  color: #1a1a24;
+  letter-spacing: -0.02em;
+}
+
+/* 3D tumble while rolling */
+.dice-face--rolling {
+  animation: diceTumble 0.55s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+
+@keyframes diceTumble {
+  0% {
+    transform: rotateX(0)      rotateY(0)      rotateZ(0)      scale(1);
+  }
+  20% {
+    transform: rotateX(120deg) rotateY(40deg)  rotateZ(80deg)  scale(0.92);
+  }
+  40% {
+    transform: rotateX(220deg) rotateY(150deg) rotateZ(160deg) scale(1.04);
+  }
+  60% {
+    transform: rotateX(310deg) rotateY(260deg) rotateZ(240deg) scale(0.95);
+  }
+  80% {
+    transform: rotateX(380deg) rotateY(340deg) rotateZ(320deg) scale(1.02);
+  }
+  100% {
+    transform: rotateX(450deg) rotateY(450deg) rotateZ(450deg) scale(1);
+  }
+}
+
+/* ===== WINNER / LOSER / PICKED states ===== */
+.dice-player--winner {
+  border-color: rgba(169, 96, 255, 0.55);
+  background: linear-gradient(135deg, rgba(169, 96, 255, 0.18), rgba(123, 92, 240, 0.06));
+  transform: translateY(-2px);
+  box-shadow: 0 14px 40px -10px rgba(169, 96, 255, 0.4);
+}
+
+.dice-player--winner .dice-face {
+  background: linear-gradient(135deg, #d4c2ff 0%, #a960ff 100%);
+  border-color: transparent;
+  box-shadow:
+    0 8px 22px -4px rgba(169, 96, 255, 0.55),
+    0 3px 0 rgba(80, 30, 160, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  transform: scale(1.05);
+}
+
+.dice-player--winner .dice-pips circle,
+.dice-player--winner .dice-num {
+  fill: #2a1d4d;
+  color: #2a1d4d;
+}
+
+.dice-player--loser {
+  border-color: rgba(255, 79, 129, 0.32);
+  background: rgba(255, 79, 129, 0.06);
+  opacity: 0.85;
+}
+
+.dice-player--picked {
+  border-color: rgba(169, 96, 255, 0.55);
+  background: linear-gradient(135deg, rgba(169, 96, 255, 0.20), rgba(123, 92, 240, 0.08));
+  transform: scale(1.02);
+  box-shadow: 0 14px 40px -10px rgba(169, 96, 255, 0.5);
+  color: #d4c2ff;
+}
+
+.dice-player--picked .dice-player__name {
+  color: rgba(255, 255, 255, 0.98);
+  font-weight: 600;
+}
+
+.dice-hint {
+  margin: 12px 0 24px;
+  padding: 14px 16px;
+  border-radius: 14px;
+  border: 1px dashed rgba(255, 255, 255, 0.16);
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 13px;
+  text-align: center;
+}
+
+/* ===== ACTION BUTTONS ===== */
+.dice-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+.dice-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 26px;
+  border-radius: 999px;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  cursor: pointer;
+  border: 1px solid;
+  transition: transform 200ms cubic-bezier(0.22, 1, 0.36, 1),
+              background 200ms ease, opacity 200ms ease;
+}
+
+.dice-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.dice-btn--primary {
+  color: #0a0d1f;
+  background: linear-gradient(135deg, #d4c2ff 0%, #a960ff 100%);
+  border-color: transparent;
+  box-shadow: 0 14px 40px -10px rgba(169, 96, 255, 0.55),
+              inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.dice-btn--primary:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.dice-btn--ghost {
+  color: rgba(255, 255, 255, 0.92);
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.dice-btn--ghost:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.10);
+}
+
+/* ===== SUMMARY BANNER ===== */
+.dice-summary {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  padding: 18px 20px;
+  border-radius: 18px;
+  border: 1px solid rgba(169, 96, 255, 0.28);
+  background:
+    linear-gradient(135deg, rgba(169, 96, 255, 0.10), rgba(123, 92, 240, 0.04));
+}
+
+.dice-summary--single { grid-template-columns: 1fr; }
+
+.dice-summary > div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.dice-summary__label {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.dice-summary strong {
+  font-size: 18px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.96);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 600px) {
+  .dice-players { grid-template-columns: 1fr; }
+  .dice-add { flex-wrap: wrap; }
+  .dice-tabs { flex-wrap: wrap; }
+  .dice-summary { grid-template-columns: 1fr; }
+  .dice-btn { flex: 1; justify-content: center; }
+}

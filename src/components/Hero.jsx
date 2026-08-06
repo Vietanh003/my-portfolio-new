@@ -2,7 +2,9 @@ import React from "react";
 import styles from "../styles/Hero.module.css";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import devDeskImage from "../assets/images/pexels-jakubzerdzicki-34212896.jpg";
+import { useLanguage } from "../i18n/LanguageContext";
 
 const Waves = ({ side }) => (
   <svg
@@ -34,6 +36,8 @@ const Waves = ({ side }) => (
 );
 
 const Hero = () => {
+  const { t } = useLanguage();
+
   return (
     <section className={styles.hero}>
       <div
@@ -55,22 +59,19 @@ const Hero = () => {
         >
           <span className={styles.greeting}>
             <span className={styles.dot} />
-            Hi, I'm
+            {t("hero.greeting")}
           </span>
           <h1 className={styles.name}>Viet Anh</h1>
-          <p className={styles.subtitle}>
-            I build fullstack web applications, backend services
-            and modern user interfaces.
-          </p>
+          <p className={styles.subtitle}>{t("hero.subtitle")}</p>
 
           <div className={styles.actions}>
-            <a href="/projects" className={styles.primaryBtn}>
-              View my work
+            <Link to="/#projects" className={styles.primaryBtn}>
+              {t("hero.viewWork")}
               <ArrowRight size={16} />
-            </a>
-            <a href="mailto:nguyenvietanh.office@gmail.com" className={styles.secondaryBtn}>
-              Get in touch
-            </a>
+            </Link>
+            <Link to="/contact" className={styles.secondaryBtn}>
+              {t("hero.getInTouch")}
+            </Link>
           </div>
         </motion.div>
       </div>

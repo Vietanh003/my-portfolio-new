@@ -59,21 +59,77 @@
   margin: 0;
 }
 
-.video-container {
-  width: 100%;
-  max-width: 100%;
-  aspect-ratio: 16 / 9;
+/* ===== Demo video card (links out to OneDrive) ===== */
+.video-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 20px;
   border-radius: 18px;
-  overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(0, 0, 0, 0.4);
-  box-shadow: none;
+  background:
+    linear-gradient(135deg, rgba(169, 96, 255, 0.10), rgba(123, 92, 240, 0.04));
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 280ms cubic-bezier(0.22, 1, 0.36, 1),
+              background 280ms cubic-bezier(0.22, 1, 0.36, 1),
+              transform 280ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.video-container iframe {
-  width: 100%;
-  height: 100%;
-  border: none;
+.video-card:hover {
+  border-color: rgba(169, 96, 255, 0.32);
+  background:
+    linear-gradient(135deg, rgba(169, 96, 255, 0.16), rgba(123, 92, 240, 0.08));
+  transform: translateY(-2px);
+}
+
+.video-card-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  color: #0a0d1f;
+  background: linear-gradient(135deg, #d4c2ff 0%, #a960ff 100%);
+  box-shadow:
+    0 8px 22px -4px rgba(169, 96, 255, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.video-card-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+  min-width: 0;
+}
+
+.video-card-title {
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: rgba(255, 255, 255, 0.96);
+  line-height: 1.3;
+}
+
+.video-card-host {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.video-card-arrow {
+  color: rgba(255, 255, 255, 0.5);
+  flex-shrink: 0;
+  transition: color 200ms ease, transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.video-card:hover .video-card-arrow {
+  color: rgba(255, 255, 255, 0.9);
+  transform: translate(2px, -2px);
 }
 
 /* ===== RIGHT COLUMN ===== */

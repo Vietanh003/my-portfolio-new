@@ -1,114 +1,114 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styles from "../styles/Header.module.css";
-import logo from "../assets/images/logo.png";
 import { NavLink } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import { Home, User, Mail, FileText } from "lucide-react";
+import HireMeMenu from "./HireMeMenu";
+import LanguageSwitcher from "./LanguageSwitcher";
+import SocialRail from "./SocialRail";
+import { useLanguage } from "../i18n/LanguageContext";
+import { useLocation } from "react-router-dom";
 
 const Header = () => {
-  const [menuOpen, setMenuOpen] = useState(false);
-
-  const closeMenu = () => setMenuOpen(false);
-  const toggleMenu = () => setMenuOpen((v) => !v);
-
-  // khóa scroll khi mở menu mobile
-  useEffect(() => {
-    document.body.style.overflow = menuOpen ? "hidden" : "";
-    return () => (document.body.style.overflow = "");
-  }, [menuOpen]);
-
-  // auto-close drawer khi resize sang desktop
-  useEffect(() => {
-    const mq = window.matchMedia("(min-width: 821px)");
-    const handler = (e) => { if (e.matches) setMenuOpen(false); };
-    mq.addEventListener("change", handler);
-    if (mq.matches) setMenuOpen(false);
-    return () => mq.removeEventListener("change", handler);
-  }, []);
+  const { t } = useLanguage();
+  const location = useLocation();
+  const showSocialRail = location.pathname !== "/cv";
 
   return (
-    <header className={styles.header}>
-      <div className={styles.navContainer}>
-        {/* Brand */}
-        <NavLink to="/" className={styles.brand} onClick={closeMenu}>
-          <img className={styles.brandLogo} src={logo} alt="Logo" />
-          <span className={styles.brandText}>Viet Anh</span>
+    <>
+      {/* ==================== DESKTOP-ONLY — floating social rail (left) ==================== */}
+      {showSocialRail && <SocialRail />}
+
+      {/* ==================== DESKTOP — floating pill nav (top) ==================== */}
+      <header className={styles.header}>
+        <div className={styles.navContainer}>
+          <nav className={styles.navDesktop} aria-label="Primary">
+            <NavLink
+              to="/"
+              end
+              className={({ isActive }) => (isActive ? styles.active : styles.link)}
+            >
+              {t("nav.home")}
+            </NavLink>
+            <NavLink
+              to="/about"
+              className={({ isActive }) => (isActive ? styles.active : styles.link)}
+            >
+              {t("nav.about")}
+            </NavLink>
+            <NavLink
+              to="/contact"
+              className={({ isActive }) => (isActive ? styles.active : styles.link)}
+            >
+              {t("nav.contact")}
+            </NavLink>
+            <NavLink
+              to="/cv"
+              className={({ isActive }) => (isActive ? styles.active : styles.link)}
+            >
+              {t("nav.cv")}
+            </NavLink>
+          </nav>
+
+          <div className={styles.actions}>
+            <LanguageSwitcher variant="pill" />
+            <div className={styles.ctaWrap}>
+              <HireMeMenu />
+            </div>
+          </div>
+        </div>
+      </header>
+
+      {/* ==================== MOBILE — bottom dock nav ==================== */}
+      <nav className={styles.bottomNav} aria-label="Mobile navigation">
+        <NavLink
+          to="/"
+          end
+          className={({ isActive }) =>
+            `${styles.dockItem} ${isActive ? styles.dockItemActive : ""}`
+          }
+          aria-label={t("nav.home")}
+        >
+          <Home size={20} strokeWidth={1.75} aria-hidden="true" />
+        </NavLink>
+        <NavLink
+          to="/about"
+          className={({ isActive }) =>
+            `${styles.dockItem} ${isActive ? styles.dockItemActive : ""}`
+          }
+          aria-label={t("nav.about")}
+        >
+          <User size={20} strokeWidth={1.75} aria-hidden="true" />
+        </NavLink>
+        <NavLink
+          to="/contact"
+          className={({ isActive }) =>
+            `${styles.dockItem} ${isActive ? styles.dockItemActive : ""}`
+          }
+          aria-label={t("nav.contact")}
+        >
+          <Mail size={20} strokeWidth={1.75} aria-hidden="true" />
+        </NavLink>
+        <NavLink
+          to="/cv"
+          className={({ isActive }) =>
+            `${styles.dockItem} ${isActive ? styles.dockItemActive : ""}`
+          }
+          aria-label={t("nav.cv")}
+        >
+          <FileText size={20} strokeWidth={1.75} aria-hidden="true" />
         </NavLink>
 
-        {/* Desktop nav */}
-        <nav className={styles.navDesktop} aria-label="Primary">
-          <NavLink to="/" className={({ isActive }) => (isActive ? styles.active : styles.link)}>
-            Home
-          </NavLink>
-          <NavLink to="/about" className={({ isActive }) => (isActive ? styles.active : styles.link)}>
-            Info
-          </NavLink>
-          <NavLink to="/projects" className={({ isActive }) => (isActive ? styles.active : styles.link)}>
-            Projects
-          </NavLink>
-          <NavLink to="/contact" className={({ isActive }) => (isActive ? styles.active : styles.link)}>
-            Contact
-          </NavLink>
-        </nav>
+        <span className={styles.dockDivider} aria-hidden="true" />
 
-        {/* Right actions */}
-        <div className={styles.actions}>
-          <a className={styles.cta} href="mailto:nguyenvietanh.office@gmail.com">
-            Hire me
-          </a>
+        <LanguageSwitcher variant="icon" />
 
-          <button
-            className={styles.menuToggle}
-            onClick={toggleMenu}
-            aria-label={menuOpen ? "Close menu" : "Open menu"}
-            aria-expanded={menuOpen}
-          >
-            {menuOpen ? <X size={22} /> : <Menu size={22} />}
-          </button>
-        </div>
-      </div>
-
-      {/* Mobile overlay */}
-      <div
-        className={`${styles.overlay} ${menuOpen ? styles.overlayShow : ""}`}
-        onClick={closeMenu}
-        aria-hidden={!menuOpen}
-      />
-
-      {/* Mobile drawer */}
-      <aside className={`${styles.drawer} ${menuOpen ? styles.drawerOpen : ""}`} aria-hidden={!menuOpen}>
-        <div className={styles.drawerTop}>
-          <NavLink to="/" className={styles.drawerBrand} onClick={closeMenu}>
-            <img className={styles.drawerLogo} src={logo} alt="Logo" />
-            <span className={styles.drawerText}>Viet Anh</span>
-          </NavLink>
-          <button className={styles.drawerClose} onClick={closeMenu} aria-label="Close menu">
-            <X size={22} />
-          </button>
-        </div>
-
-        <div className={styles.drawerLinks}>
-          <NavLink to="/" onClick={closeMenu} className={({ isActive }) => (isActive ? styles.drawerActive : styles.drawerLink)}>
-            Home
-          </NavLink>
-          <NavLink to="/about" onClick={closeMenu} className={({ isActive }) => (isActive ? styles.drawerActive : styles.drawerLink)}>
-            Info
-          </NavLink>
-          <NavLink to="/projects" onClick={closeMenu} className={({ isActive }) => (isActive ? styles.drawerActive : styles.drawerLink)}>
-            Projects
-          </NavLink>
-          <NavLink to="/contact" onClick={closeMenu} className={({ isActive }) => (isActive ? styles.drawerActive : styles.drawerLink)}>
-            Contact
-          </NavLink>
-        </div>
-
-        <div className={styles.drawerFooter}>
-          <a className={styles.drawerCta} href="mailto:nguyenvietanh.office@gmail.com" onClick={closeMenu}>
-            Hire me
-          </a>
-          <div className={styles.drawerHint}>Usually reply within 24h</div>
-        </div>
-      </aside>
-    </header>
+        <HireMeMenu
+          iconOnly
+          position="top"
+          triggerClassName={styles.dockItem}
+        />
+      </nav>
+    </>
   );
 };
 
