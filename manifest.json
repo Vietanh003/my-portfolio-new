@@ -1,0 +1,15 @@
+{
+  "short_name": "Viet Anh",
+  "name": "Viet Anh Nguyen — Fullstack Developer",
+  "icons": [
+    {
+      "src": "logo.png",
+      "type": "image/png",
+      "sizes": "192x192 512x512"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#0a0d1f",
+  "background_color": "#0a0d1f"
+}
