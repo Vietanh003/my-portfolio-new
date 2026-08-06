@@ -68,12 +68,7 @@ const CONTACTS = [
     icon: Github,
     href: decode(enc.github),
     text: "github.com/Vietanh003",
-  },
-  {
-    icon: Globe,
-    href: "https://github.com/Vietanh003/my-portfolio-new.git",
-    text: "github.com/Vietanh003/my-portfolio-new",
-  },
+  }
 ];
 
 /* Flat skill groups (label + single body paragraph) — mirrors cv.html exactly. */
